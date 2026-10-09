@@ -101,43 +101,68 @@ export function RetirementCalculator() {
           </h1>
         </div>
 
-        <Button
+        <button
           type="button"
-          variant="ghost"
-          size="icon"
-          className="mt-0.5 size-8 shrink-0 rounded-full text-ink-muted hover:bg-slate-100 hover:text-ink"
+          className="mt-0.5 inline-flex size-8 shrink-0 items-center justify-center rounded-full text-ink-muted transition-colors hover:bg-slate-100 hover:text-ink"
           aria-label="Calculator settings"
           onClick={() => setSettingsOpen(true)}
         >
           <MoreHorizontal className="size-4" />
-        </Button>
+        </button>
 
-        <Dialog open={settingsOpen} onOpenChange={setSettingsOpen}>
-          <DialogContent className="sm:max-w-sm">
-            <DialogHeader>
-              <DialogTitle>Projection settings</DialogTitle>
-              <DialogDescription>
-                The demo starts at age 37. Change your current age to shift the
-                runway chart.
-              </DialogDescription>
-            </DialogHeader>
-            <div className="grid gap-3 py-2">
-              <div className="grid gap-1.5">
-                <Label htmlFor="current-age">Current age</Label>
-                <Input
-                  id="current-age"
-                  inputMode="decimal"
-                  value={ageDraft}
-                  onChange={(e) => setAgeDraft(e.target.value)}
-                  className="h-10"
-                />
+        {settingsOpen ? (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 p-4 backdrop-blur-[2px]"
+            role="presentation"
+            onClick={() => setSettingsOpen(false)}
+          >
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="settings-title"
+              className="w-full max-w-sm rounded-xl bg-white p-4 shadow-xl ring-1 ring-black/10"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="mb-3 flex items-start justify-between gap-3">
+                <div>
+                  <h2
+                    id="settings-title"
+                    className="text-base font-semibold text-ink"
+                  >
+                    Projection settings
+                  </h2>
+                  <p className="mt-1 text-sm text-ink-muted">
+                    The demo starts at age 37. Change your current age to shift
+                    the runway chart.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  className="rounded-md px-2 py-1 text-sm text-ink-muted hover:bg-slate-100"
+                  aria-label="Close settings"
+                  onClick={() => setSettingsOpen(false)}
+                >
+                  ✕
+                </button>
               </div>
-              <Button type="button" onClick={applyAge} className="mt-1">
-                Update projection
-              </Button>
+              <div className="grid gap-3 py-1">
+                <div className="grid gap-1.5">
+                  <Label htmlFor="current-age">Current age</Label>
+                  <Input
+                    id="current-age"
+                    inputMode="decimal"
+                    value={ageDraft}
+                    onChange={(e) => setAgeDraft(e.target.value)}
+                    className="h-10"
+                  />
+                </div>
+                <Button type="button" onClick={applyAge} className="mt-1">
+                  Update projection
+                </Button>
+              </div>
             </div>
-          </DialogContent>
-        </Dialog>
+          </div>
+        ) : null}
       </header>
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
