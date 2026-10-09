@@ -5,13 +5,6 @@ import { MoreHorizontal } from "lucide-react"
 
 import { BalanceChart } from "@/components/balance-chart"
 import { Button } from "@/components/ui/button"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
@@ -103,11 +96,12 @@ export function RetirementCalculator() {
 
         <button
           type="button"
-          className="mt-0.5 inline-flex size-8 shrink-0 items-center justify-center rounded-full text-ink-muted transition-colors hover:bg-slate-100 hover:text-ink"
+          className="mt-0.5 inline-flex h-8 shrink-0 items-center gap-1.5 rounded-full border border-slate-200 bg-white px-2.5 text-[12px] font-medium text-ink-muted transition-colors hover:border-slate-300 hover:bg-slate-50 hover:text-ink"
           aria-label="Calculator settings"
           onClick={() => setSettingsOpen(true)}
         >
-          <MoreHorizontal className="size-4" />
+          <span>Age {inputs.currentAge}</span>
+          <MoreHorizontal className="size-3.5 opacity-70" />
         </button>
 
         {settingsOpen ? (
