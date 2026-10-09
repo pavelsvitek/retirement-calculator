@@ -11,7 +11,6 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -102,19 +101,18 @@ export function RetirementCalculator() {
           </h1>
         </div>
 
+        <Button
+          type="button"
+          variant="ghost"
+          size="icon"
+          className="mt-0.5 size-8 shrink-0 rounded-full text-ink-muted hover:bg-slate-100 hover:text-ink"
+          aria-label="Calculator settings"
+          onClick={() => setSettingsOpen(true)}
+        >
+          <MoreHorizontal className="size-4" />
+        </Button>
+
         <Dialog open={settingsOpen} onOpenChange={setSettingsOpen}>
-          <DialogTrigger
-            render={
-              <Button
-                variant="ghost"
-                size="icon"
-                className="mt-0.5 size-8 shrink-0 rounded-full text-ink-muted hover:bg-slate-100 hover:text-ink"
-                aria-label="Calculator settings"
-              />
-            }
-          >
-            <MoreHorizontal className="size-4" />
-          </DialogTrigger>
           <DialogContent className="sm:max-w-sm">
             <DialogHeader>
               <DialogTitle>Projection settings</DialogTitle>
@@ -134,7 +132,7 @@ export function RetirementCalculator() {
                   className="h-10"
                 />
               </div>
-              <Button onClick={applyAge} className="mt-1">
+              <Button type="button" onClick={applyAge} className="mt-1">
                 Update projection
               </Button>
             </div>
